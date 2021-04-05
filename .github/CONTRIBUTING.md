@@ -79,7 +79,7 @@ All repositories should use `main` as the default branch, as is default on githu
 
 
 ## [.github](https://github.com/Concordium/.github)
-   The common templates for contributions, pull requests, and issues are stored in this repository.
+   The common templates for contributions, pull requests, and issues are stored in [.github](https://github.com/Concordium/.github).
    If a new repository is added, an existing one removed or renamed, then this should be reflected in the contribution guidelines.
 
 ## Contributor license agreement
