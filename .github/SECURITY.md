@@ -16,8 +16,6 @@ Your mail report should include the following information:
 - affected components
 - github username
 
-We encourage you to use our [public key](#public-key) when sending sensitive information.
-
 You'll receive a first response to your email after one working day.
 If applicable, a new [security advisory](https://docs.github.com/en/code-security/security-advisories/creating-a-security-advisory) will be opened and all further communication will proceed there with you as invited collaborator.
 
@@ -36,8 +34,3 @@ Before writing to us, please check [out of scope](#out-of-scope) and previously 
 ## Eligibility
 
 We may reward reports of critical or high severity.
-
-## Public Key
-```
------BEGIN PGP PUBLIC KEY BLOCK-----
-```
