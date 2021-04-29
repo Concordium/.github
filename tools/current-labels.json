@@ -5,14 +5,34 @@
     "description": "An urgent problem that blocks the system use until the issue is resolved."
   },
   {
+    "name": "[Prio] Medium",
+    "color": "D93F0B",
+    "description": "A core functionality is compromised. Workaround available."
+  },
+  {
     "name": "[Prio] Low",
     "color": "FBCA04",
     "description": "Should be fixed if time permits but can be postponed."
   },
-  {
-    "name": "[Prio] Medium",
-    "color": "D93F0B",
-    "description": "A core functionality is compromised. Workaround available."
+   {
+    "name": "[Sev] Critical",
+    "color": "690002",
+    "description": "Mission-critical systems are not functioning correctly."
+  },
+   {
+    "name": "[Sev] High",
+    "color": "964C4D",
+    "description": "Essential capability is affected. Workaround not available."
+  },
+   {
+    "name": "[Sev] Medium",
+    "color": "D2B2B3",
+    "description": "Essential capability is affected. Workaround available."
+  },
+   {
+    "name": "[Sev] Low",
+    "color": "F0E5E5",
+    "description": "Non-essential capability is affected."
   },
   {
     "name": "[Res] Invalid",
@@ -93,5 +113,10 @@
     "name": "question",
     "color": "d876e3",
     "description": "Further information is requested"
+  },
+  {
+    "name": "backlog",
+    "color": "B6B2B2",
+    "description": ""
   }
 ]
