@@ -1,13 +1,13 @@
 ---
-name: Improvement
-about: To suggest an improvement, please create an improvement report.
+name: Change Request
+about: To suggest an improvement, please create a change request.
 title: ''
 labels: '[Type] Change Request'
 assignees: ''
 
 ---
 
-**Bug Description**
+**Description**
 
 **Steps to Reproduce**
 
