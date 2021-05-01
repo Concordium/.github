@@ -67,6 +67,9 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   This repository has the following submodule dependency.
   - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
 
+- [concordium-network-dashboard](https://github.com/Concordium/concordium-network-dashboard)
+  This repository contains the implementation of the network dashboard which displays the status of the nodes which choose to report it.
+
 ## CI
 
 We use github actions for continuous testing. As a general rule actions are run on every pull request against the `main` branch, and on every push to the `main` branch.
