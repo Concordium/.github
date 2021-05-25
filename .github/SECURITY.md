@@ -4,7 +4,7 @@ We appreciate your time and effort in responsibly reporting any security vulnera
 
 ## Reporting a Vulnerability
 
-**Please write an email to <security@concordium.com>.**
+**Please write an email to <security@concordium.software>.**
 
 Do not create a public bug ticket mentioning the vulnerability or discuss it publically before we got the chance to fix it and coordinate disclosure.
 
@@ -26,7 +26,7 @@ Before writing to us, please check [out of scope](#out-of-scope) and previously 
 
 ## Out of Scope
 
-- Concordium websites https://concordium.com/ and https://developers.concordium.com/ and other infrastructure such as email
+- Concordium websites https://concordium.com/, https://concordium.software and  https://developers.concordium.software/ and other infrastructure such as email
 - Concordium Node Dashboard UI
 - Concordium Network Dashboard UI
 
