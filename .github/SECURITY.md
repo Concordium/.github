@@ -26,7 +26,7 @@ Before writing to us, please check [out of scope](#out-of-scope) and previously 
 
 ## Out of Scope
 
-- Concordium websites https://concordium.com/, https://concordium.software and  https://developers.concordium.software/ and other infrastructure such as email
+- Concordium websites https://concordium.com/, https://concordium.software and https://developers.concordium.software/ and other infrastructure such as email
 - Concordium Node Dashboard UI
 - Concordium Network Dashboard UI
 
