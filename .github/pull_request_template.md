@@ -13,6 +13,7 @@ _Describe the changes that were needed.
 - [ ] I have performed a self-review of the changes.
 - [ ] I have documented my code, in particular the intent of the
       hard-to-understand areas.
+- [ ] (If necessary) I have updated the CHANGELOG.
 
 ## CLA acceptance
 
