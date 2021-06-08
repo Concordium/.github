@@ -70,6 +70,12 @@ As a general rule, if a repository A is a submodule dependency of repository B t
 - [concordium-network-dashboard](https://github.com/Concordium/concordium-network-dashboard)
   This repository contains the implementation of the network dashboard which displays the status of the nodes which choose to report it.
 
+- [concordium-reference-wallet-android](https://github.com/Concordium/concordium-reference-wallet-android)
+  This is a reference implementation of a mobile wallet for the Android platform.
+
+- [concordium-reference-wallet-ios](https://github.com/Concordium/concordium-reference-wallet-ios)
+  This is a reference implementation of a mobile wallet for the iOS platform.
+
 ## CI
 
 We use github actions for continuous testing. As a general rule actions are run on every pull request against the `main` branch, and on every push to the `main` branch.
