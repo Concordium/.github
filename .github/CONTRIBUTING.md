@@ -75,6 +75,22 @@ As a general rule, if a repository A is a submodule dependency of repository B t
 
 - [concordium-reference-wallet-ios](https://github.com/Concordium/concordium-reference-wallet-ios)
   This is a reference implementation of a mobile wallet for the iOS platform.
+  
+- [concordium-desktop-wallet](https://github.com/Concordium/concordium-desktop-wallet)
+  This is an implementation of a desktop wallet for Windows, macOS and Linux.
+  
+    This repository has the following submodule dependencies.
+    - [concordium-base](https://github.com/Concordium/concordium-base)
+    - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
+  
+- [concordium-ledger-app](https://github.com/Concordium/concordium-ledger-app)
+  This repository contains an application for the Ledger Nano S and Ledger Nano X devices for retrieving keys and signing transactions.
+  
+- [concordium-node-sdk-js](https://github.com/Concordium/concordium-node-sdk-js)
+  This repository contains an SDK in Typescript for interacting with a running node, including querying the state of the blockchain and sending transactions.
+  
+    This repository has the following submodule dependencies.
+    - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
 
 ## CI
 
