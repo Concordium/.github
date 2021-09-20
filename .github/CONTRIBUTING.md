@@ -87,10 +87,16 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   This repository contains an application for the Ledger Nano S and Ledger Nano X devices for retrieving keys and signing transactions.
   
 - [concordium-node-sdk-js](https://github.com/Concordium/concordium-node-sdk-js)
-  This repository contains an SDK in Typescript for interacting with a running node, including querying the state of the blockchain and sending transactions.
+  This repository contains a SDK in Typescript for interacting with a running node, including querying the state of the blockchain and sending transactions.
   
     This repository has the following submodule dependencies.
     - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
+
+- [concordium-java-sdk](https://github.com/Concordium/concordium-java-sdk)
+  This repository contains a SDK for interacting with the Concordium Blockchain, in particular for interacting with concordium node. 
+  
+  This repository has the following submodule dependencies
+  - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
 
 ## CI
 
