@@ -98,6 +98,16 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   This repository has the following submodule dependencies
   - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
 
+- [transaction-logger](https://github.com/Concordium/concordium-transaction-logger)
+  This repository contains a transaction logger service that queries the node for all transactions and logs them in a postgres database,
+  indexed by affected accounts and contracts.
+  
+  This repository has the following submodule dependencies
+  - [concordium-rust-sdk](https://github.com/Concordium/concordium-rust-sdk)
+  - [concordium-base](https://github.com/Concordium/concordium-base) (via concordium-rust-sdk)
+  - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api) (via concordium-rust-sdk)
+  - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common) (via concordium-rust-sdk)
+
 ## CI
 
 We use github actions for continuous testing. As a general rule actions are run on every pull request against the `main` branch, and on every push to the `main` branch.
