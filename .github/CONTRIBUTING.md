@@ -98,7 +98,7 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   This repository has the following submodule dependencies
   - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
 
-- [transaction-logger](https://github.com/Concordium/concordium-transaction-logger)
+- [concordium-transaction-logger](https://github.com/Concordium/concordium-transaction-logger)
   This repository contains a transaction logger service that queries the node for all transactions and logs them in a postgres database,
   indexed by affected accounts and contracts.
   
