@@ -90,7 +90,9 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   This repository contains a SDK in Typescript for interacting with a running node, including querying the state of the blockchain and sending transactions.
   
     This repository has the following submodule dependencies.
+    - [concordium-base](https://github.com/Concordium/concordium-base)
     - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
+    - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common)
 
 - [concordium-java-sdk](https://github.com/Concordium/concordium-java-sdk)
   This repository contains a SDK for interacting with the Concordium Blockchain, in particular for interacting with concordium node. 
@@ -102,6 +104,15 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   This repository contains a transaction logger service that queries the node for all transactions and logs them in a postgres database,
   indexed by affected accounts and contracts.
   
+  This repository has the following submodule dependencies
+  - [concordium-rust-sdk](https://github.com/Concordium/concordium-rust-sdk)
+  - [concordium-base](https://github.com/Concordium/concordium-base) (via concordium-rust-sdk)
+  - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api) (via concordium-rust-sdk)
+  - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common) (via concordium-rust-sdk)
+
+- [concordium-euro2ccd-service](https://github.com/Concordium/concordium-euro2ccd-service)
+  This repository contains a service that keeps track of the exchange rate between a Euro and a CCD, and updates the exchange rate on the Concordium Blockchain.
+
   This repository has the following submodule dependencies
   - [concordium-rust-sdk](https://github.com/Concordium/concordium-rust-sdk)
   - [concordium-base](https://github.com/Concordium/concordium-base) (via concordium-rust-sdk)
