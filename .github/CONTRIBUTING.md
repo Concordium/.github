@@ -119,6 +119,15 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api) (via concordium-rust-sdk)
   - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common) (via concordium-rust-sdk)
 
+- [concordium-misc-tools](https://github.com/Concordium/concordium-misc-tools)
+  This repository contains a number of small tools with to help with testing, running the node, monitoring the node, or similar tasks.
+  
+  This repository has the following submodule dependencies
+  - [concordium-rust-sdk](https://github.com/Concordium/concordium-rust-sdk)
+  - [concordium-base](https://github.com/Concordium/concordium-base) (via concordium-rust-sdk)
+  - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api) (via concordium-rust-sdk)
+  - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common) (via concordium-rust-sdk)
+
 ## CI
 
 We use github actions for continuous testing. As a general rule actions are run on every pull request against the `main` branch, and on every push to the `main` branch.
