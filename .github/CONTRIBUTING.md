@@ -6,7 +6,7 @@ The following is a list of core repositories of the Concordium organization, lis
 
 The components of the concordium node and related tools are distributed among a number of repositories. The majority of components are written in either Rust, Haskell, or a combination of the two, with some scripts and tools in a combination of Bash, Python, Typescript and Elm.
 
-Dependencies are managed in two ways. If a packages is published in a tool-specific package registry, i.e., [crates.io](https://crates.io) for Rust and [stackage](https://www.stackage.org) then the dependency is taken from there, via the Cargo tool for Rust, and stack tool for Haskell.
+Dependencies are managed in two ways. If a package is published in a tool-specific package registry, i.e., [crates.io](https://crates.io) for Rust and [stackage](https://www.stackage.org) then the dependency is taken from there, via the Cargo tool for Rust, and stack tool for Haskell.
 
 If a dependency is not published in a package registry then we add it a git submodule dependency and refer to it as a local dependency. This latter method is also used if we need a fork of an existing package to either fix issues, or expose additional functionality not directly exposed by a published package.
 
@@ -22,32 +22,33 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   The repository has the following submodule dependencies on other Concordium repositories
   - [concordium-base](https://github.com/Concordium/concordium-base)
   - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
-  - [concordium-wasm-smart-contracts](https://github.com/Concordium/concordium-wasm-smart-contracts)
   - [haskell-lmdb](https://github.com/Concordium/haskell-lmdb/)
 
 - [concordium-base](https://github.com/Concordium/concordium-base):
   This contains common libraries used by the node and other components. It defines common types, APIs and tools. It also contains the implementation of all cryptographic protocols used by the Concordium blockchain.
+  Additionally, it contains the implementation of the on-chain functionality for smart contracts on the Concordium blockchain. This consists of a [Wasm](https://webassembly.org/) validator, interpreter, and integration with the node.
 
-  This repository does not have any submodule dependencies.
+  The repository has the following submodule dependencies on other Concordium repositories
+  - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common)
 
 - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api):
   Contains the definition of the GRPC/Protobuf API that the node exposes. 
 
   This repository does not have any submodule dependencies.
 
-- [concordium-**wasm**-smart-contracts](https://github.com/Concordium/concordium-wasm-smart-contracts):
-  Contains the implementation of the on-chain functionality for smart contracts on the Concordium blockchain. This consists of a [Wasm](https://webassembly.org/) validator, interpreter, and integration with the node. Additionally, this repository contains the tool `cargo-concordium` for testing smart contracts.
-
-  This repository has no submodule dependencies, but some of the packages in it do depend on [concordium-contracts-common](https://docs.rs/concordium-contracts-common/) Rust crate which is published on [crates.io](https://crates.io)
-
 - [concordium-**rust**-smart-contracts](https://github.com/Concordium/concordium-rust-smart-contracts):
-  Is the dual of [concordium-**wasm**-smart-contracts](https://github.com/Concordium/concordium-wasm-smart-contracts) that contains the Rust SDK for writing smart contracts for the Concordium blockchain. The main package in the repository is [concordium-std](https://docs.rs/concordium-std) which provides a form of a "standard library" for writing smart contracts.
+  It contains the Rust SDK for writing smart contracts for the Concordium blockchain. The main package in the repository is [concordium-std](https://docs.rs/concordium-std) which provides a form of a "standard library" for writing smart contracts.
 
   This repository has no submodule dependencies, but some of the packages in it do depend on [concordium-contracts-common](https://docs.rs/concordium-contracts-common/) Rust crate which is published on [crates.io](https://crates.io)
 
-- [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common): Contains the implementation of some common functionality needed by both packages in [concordium-**rust**-smart-contracts](https://github.com/Concordium/concordium-rust-smart-contracts) and packages in [concordium-**wasm**-smart-contracts](https://github.com/Concordium/concordium-wasm-smart-contracts).
+- [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common): Contains the implementation of some common functionality needed by both packages in [concordium-**rust**-smart-contracts](https://github.com/Concordium/concordium-rust-smart-contracts) and packages in [concordium-base](https://github.com/Concordium/concordium-base).
 
 - [haskell-lmdb](https://github.com/Concordium/haskell-lmdb/): is a fork of [dmbarbour/haskell-lmdb](https://github.com/dmbarbour/haskell-lmdb) containing a number of bugfixes and exposing additional functionality.
+
+- [concordium-smart-contract-tools](https://github.com/Concordium/concordium-smart-contract-tools): contains tools for developing smart contracts on and off chain.
+
+  This repository has the following submodule dependencies.
+  - [concordium-base](https://github.com/Concordium/concordium-base)
 
 - [concordium-client](https://github.com/Concordium/concordium-client): Is the main client that can be used to interact with a running node, including querying the state of the blockchain, sending transactions, updating smart contracts.
 
