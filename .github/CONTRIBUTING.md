@@ -129,6 +129,18 @@ As a general rule, if a repository A is a submodule dependency of repository B t
   - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api) (via concordium-rust-sdk)
   - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common) (via concordium-rust-sdk)
 
+- [concordium-browser-wallet](https://github.com/Concordium/concordium-browser-wallet)
+  This contains the implementation of the Concordium browser wallet (a browser extension).
+
+  This repository uses the following repositories as npm dependencies:
+  - [concordium-wallet-common-helpers](https://github.com/Concordium/concordium-wallet-common-helpers)
+
+- [concordium-wallet-common-helpers](https://github.com/Concordium/concordium-wallet-common-helpers)
+  This contains utility functions and others helpers intended to be shared between the desktop and browser wallet.
+
+- [concordium-dapp-examples](https://github.com/Concordium/concordium-dapp-examples)
+  This contains a numbers of small dapps intended to demonstrate different use-cases. And to provide examples of using the different features available.
+
 ## CI
 
 We use github actions for continuous testing. As a general rule actions are run on every pull request against the `main` branch, and on every push to the `main` branch.
