@@ -30,6 +30,7 @@ As a general rule, if a repository A is a submodule dependency of repository B t
 
   The repository has the following submodule dependencies on other Concordium repositories
   - [concordium-contracts-common](https://github.com/Concordium/concordium-contracts-common)
+  - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api)
 
 - [concordium-grpc-api](https://github.com/Concordium/concordium-grpc-api):
   Contains the definition of the GRPC/Protobuf API that the node exposes. 
