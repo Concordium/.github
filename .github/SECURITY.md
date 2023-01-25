@@ -4,7 +4,7 @@ We appreciate your time and effort in responsibly reporting any security vulnera
 
 ## Reporting a Vulnerability
 
-**Please write an email to <security@concordium.software>.**
+**Please write an email to <security@concordium.com>.**
 
 Do not create a public bug ticket mentioning the vulnerability or discuss it publically before we got the chance to fix it and coordinate disclosure.
 
