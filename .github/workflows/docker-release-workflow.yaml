@@ -59,4 +59,4 @@ jobs:
           no-cache: true
           push: false
           build-args: |
-            ${{BUILD_ARGS}}
+            ${{env.BUILD_ARGS}}
