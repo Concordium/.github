@@ -7,7 +7,7 @@ on:
         required: true
         type: string
       BUILD_ARGS:
-        reuired: true
+        required: true
         type: string
       DOCKER_FILE:
         required: true
