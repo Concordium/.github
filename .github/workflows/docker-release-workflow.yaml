@@ -9,6 +9,9 @@ on:
       BUILD_ARGS:
         reuired: true
         type: string
+      DOCKER_FILE:
+        required: true
+        type: string
     secrets:
       DOCKERHUB_USERNAME:
         required: true
