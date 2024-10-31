@@ -54,6 +54,6 @@ jobs:
           file: ${{ env.DOCKER_FILE }}
           tags: ${{ env.FULL_IMAGE_TAG }}
           no-cache: true
-          push: true
+          push: false
           build-args: |
             ${{BUILD_ARGS}}
