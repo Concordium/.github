@@ -54,9 +54,9 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ${{ env.DOCKER_FILE }}
+          file: ${{ inputs.DOCKER_FILE }}
           tags: ${{ env.FULL_IMAGE_TAG }}
           no-cache: true
           push: false
           build-args: |
-            ${{env.BUILD_ARGS}}
+            ${{inputs.BUILD_ARGS}}
