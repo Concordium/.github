@@ -10,4 +10,4 @@ some tools specific to management of the Concordium organization.
 
 ## Workflows
 
-In the '.github/workflows' folder, reusable workflows can be placed to be used in other repositories in the Concordium organization.
+In the [.github/workflows](.github/workflows) folder, reusable workflows can be placed to be used in other repositories in the Concordium organization.
