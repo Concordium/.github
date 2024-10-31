@@ -3,9 +3,6 @@ name: Docker release reusable workflow
 on:
   workflow_call:
     inputs:
-      SERVICE_NAME:
-        required: true
-        type: string
       BUILD_ARGS:
         required: true
         type: string
