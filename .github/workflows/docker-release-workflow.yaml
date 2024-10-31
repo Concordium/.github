@@ -8,6 +8,7 @@ on:
         type: string
       BUILD_ARGS:
         required: true
+        type: string
       DOCKER_FILE:
         required: true
         type: string
