@@ -20,7 +20,7 @@ on:
 
 jobs:
   release-base-image:
-    if: ${{ startsWith(github.ref_name, '${{env.SERVICE_NAME}}') }}
+    #if: ${{ startsWith(github.ref_name, '${{env.SERVICE_NAME}}') }}
     runs-on: ubuntu-latest
     environment: release
     steps:
