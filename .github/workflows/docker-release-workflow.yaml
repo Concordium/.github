@@ -34,7 +34,7 @@ jobs:
 
       - name: Get the Image tag
         env:
-          TAG: ${{ github.ref_name }}
+          TAG: static-libraries-1.2.3 #${{ github.ref_name }}
         run: |
           tagversion=${TAG##${{inputs.SERVICE_NAME}}-}
           if [[ "${{inputs.version}}" != "$tagversion" ]]; then
