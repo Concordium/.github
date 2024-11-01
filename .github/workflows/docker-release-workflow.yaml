@@ -37,7 +37,6 @@ jobs:
           TAG: "static-libraries-1.2.3" #${{ github.ref_name }}
         run: |
           tagversion=${TAG##${{inputs.SERVICE_NAME}}-}
-          echo "$tagversion"
           if [[ "${{inputs.version}}" != "$tagversion" ]]; then
             echo "Provided version: ${{inputs.version}} does not correspond to tag version $tagversion"
             exit 1
