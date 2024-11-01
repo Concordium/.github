@@ -1,0 +1,71 @@
+name: Docker release reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      SERVICE_NAME:
+        required: true
+        type: string
+      BUILD_ARGS:
+        required: true
+        type: string
+      DOCKER_FILE:
+        required: true
+        type: string
+      VERSION:
+        required: true
+        type: string
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_TOKEN:
+        required: true
+
+jobs:
+  release-docker:
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Get the Image tag
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          tagversion=${TAG##${{inputs.SERVICE_NAME}}-}
+          if [[ "${{inputs.version}}" != "$tagversion" ]]; then
+            echo "Provided version: ${{inputs.version}} does not correspond to tag version $tagversion"
+            exit 1
+          fi
+          echo "FULL_IMAGE_TAG=concordium/${TAG}" >> $GITHUB_ENV
+
+      - name: Check if image exist
+        run: |
+          set +e
+          docker manifest inspect ${{ env.FULL_IMAGE_TAG }}
+          exitcode=$?
+          if [ $exitcode -eq "0" ]; then
+            echo "Error: ${{ env.FULL_IMAGE_TAG }} already exist"
+            exit 1
+          fi
+
+      - name: Clone repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          submodules: recursive
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ inputs.DOCKER_FILE }}
+          tags: ${{ env.FULL_IMAGE_TAG }}
+          no-cache: true
+          push: false
+          build-args: |
+            ${{inputs.BUILD_ARGS}}
