@@ -36,7 +36,7 @@ jobs:
         env:
           TAG: ${{ github.ref_name }}
         run: |
-            echo "FULL_IMAGE_TAG=concordium/${{inputs.SERVICE_NAME}}:${inputs.VERSION}" >> $GITHUB_ENV
+            echo "FULL_IMAGE_TAG=concordium/${{inputs.SERVICE_NAME}}:${{inputs.VERSION}}" >> $GITHUB_ENV
 #          tagversion=${TAG##${{inputs.SERVICE_NAME}}-}
 #          if [[ "${{inputs.version}}" != "$tagversion" ]]; then
 #            echo "Provided version: ${{inputs.version}} does not correspond to tag version $tagversion"
