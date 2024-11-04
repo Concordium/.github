@@ -34,7 +34,7 @@ jobs:
 
       - name: Get the Image tag
         env:
-          TAG: base/rust1.73-ghc9.6.4 #${{ github.ref_name }}
+          TAG: base/rust1.73-ghc9.6.4-tester #${{ github.ref_name }}
         run: |
           tagversion=${TAG##${{inputs.SERVICE_NAME}}/}
           if [[ "${{inputs.version}}" != "$tagversion" ]]; then
