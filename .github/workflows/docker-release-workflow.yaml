@@ -66,6 +66,6 @@ jobs:
           file: ${{ inputs.DOCKER_FILE }}
           tags: ${{ env.FULL_IMAGE_TAG }}
           no-cache: true
-          push: true
+          push: false
           build-args: |
             ${{inputs.BUILD_ARGS}}
