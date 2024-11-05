@@ -50,7 +50,7 @@ jobs:
           if [ -n "${{ inputs.CARGO_FILE_PATH }}" ] ; then
             CARGO_VERSION=$(yq .package.version "${{ inputs.CARGO_FILE_PATH }}")
             if [ ! "$TAG_VERSION" = "$CARGO_VERSION" ] ; then
-              echo "::error::$CARGO_VERSION does not match ${{ inputs.FILE_VERSION }}."
+              echo "::error::$CARGO_VERSION does not match $TAG_VERSION."
               exit 1
             fi
           fi
