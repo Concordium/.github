@@ -36,6 +36,7 @@ jobs:
             echo "Provided version: ${{inputs.FILE_NAME}} does not correspond to tag version $tagversion"
             exit 1
           fi
+          echo ${{inputs.IAM_ROLE}}
           echo "OUT_FILE=${{inputs.BUCKET}}/${{inputs.SERVICE_NAME}}-${{inputs.FILE_NAME}}" >> $GITHUB_ENV
 
       - name: Checkout Repository
