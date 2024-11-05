@@ -4,16 +4,19 @@ on:
   workflow_call:
     inputs:
       SERVICE_NAME:
+        description: 'The name of the service. Used as part of the Docker image tag.'
         required: true
         type: string
       BUILD_ARGS:
+        description: 'Arguments to be passed to the Dockerfile during the build process.'
         required: true
         type: string
       DOCKER_FILE:
+        description: 'Path to the Dockerfile for building the service image.'
         required: true
         type: string
-      VERSION:
-        required: true
+      FILE_VERSION:
+        description: 'Version to validate against the tag version. If specified, ensures the tag matches this version.'
         type: string
     secrets:
       DOCKERHUB_USERNAME:
@@ -32,23 +35,23 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Get the Image tag
+      - name: Set image tag if correctly formatted
         env:
           TAG: ${{ github.ref_name }}
         run: |
-          tagversion=${TAG##${{inputs.SERVICE_NAME}}/}
-          if [[ "${{inputs.version}}" != "$tagversion" ]]; then
-            echo "Provided version: ${{inputs.version}} does not correspond to tag version $tagversion"
+          TAG_VERSION=${TAG##${{ inputs.SERVICE_NAME }}/}
+          if [ -n "${{ inputs.FILE_VERSION }}" ] && [ "${{ inputs.FILE_VERSION }}" != "$TAG_VERSION" ]; then
+            echo "::error::$TAG_VERSION does not match ${{ inputs.FILE_VERSION }}."
             exit 1
           fi
-          echo "FULL_IMAGE_TAG=concordium/${{inputs.SERVICE_NAME}}:${{inputs.VERSION}}" >> $GITHUB_ENV
+          echo "FULL_IMAGE_TAG=concordium/${{ inputs.SERVICE_NAME }}:${TAG_VERSION}" >> $GITHUB_ENV
 
       - name: Check if image exist
         run: |
           set +e
           docker manifest inspect ${{ env.FULL_IMAGE_TAG }}
-          exitcode=$?
-          if [ $exitcode -eq "0" ]; then
+          EXITCODE=$?
+          if [ $EXITCODE -eq "0" ]; then
             echo "Error: ${{ env.FULL_IMAGE_TAG }} already exist"
             exit 1
           fi
@@ -68,4 +71,4 @@ jobs:
           no-cache: true
           push: true
           build-args: |
-            ${{inputs.BUILD_ARGS}}
+            ${{ inputs.BUILD_ARGS }}
