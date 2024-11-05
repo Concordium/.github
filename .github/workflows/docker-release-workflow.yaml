@@ -43,8 +43,7 @@ jobs:
 
       - name: Set image tag if correctly formatted
         env:
-#          TAG: ${{ github.ref_name }}
-          TAG: "static-libraries/rust-1.74.0_ghc-9.6.4-dev"
+          TAG: ${{ github.ref_name }}
         run: |
           TAG_VERSION=${TAG##${{ inputs.SERVICE_NAME }}/}
           if [ -n "${{ inputs.CARGO_FILE_PATH }}" ] ; then
