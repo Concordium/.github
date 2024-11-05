@@ -11,11 +11,11 @@ on:
         description: 'Arguments to be passed to the Dockerfile during the build process.'
         required: true
         type: string
-      DOCKER_FILE:
+      DOCKER_FILE_PATH:
         description: 'Path to the Dockerfile for building the service image.'
         required: true
         type: string
-      FILE_VERSION:
+      CARGO_FILE_PATH:
         description: 'Version to validate against the tag version. If specified, ensures the tag matches this version.'
         type: string
     secrets:
@@ -35,15 +35,24 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Clone repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          submodules: recursive
+
       - name: Set image tag if correctly formatted
         env:
 #          TAG: ${{ github.ref_name }}
           TAG: "static-libraries/rust-1.74.0_ghc-9.6.4-dev"
         run: |
           TAG_VERSION=${TAG##${{ inputs.SERVICE_NAME }}/}
-          if [ -n "${{ inputs.FILE_VERSION }}" ] && [ "${{ inputs.FILE_VERSION }}" != "$TAG_VERSION" ]; then
-            echo "::error::$TAG_VERSION does not match ${{ inputs.FILE_VERSION }}."
-            exit 1
+          if [ -n "${{ inputs.CARGO_FILE_PATH }}" ] ; then
+            CARGO_VERSION=$(yq .package.version "${{ inputs.CARGO_FILE_PATH }}")
+            if [ ! "$TAG_VERSION" = "$CARGO_VERSION" ] ; then
+              echo "::error::$CARGO_VERSION does not match ${{ inputs.FILE_VERSION }}."
+              exit 1
+            fi
           fi
           echo "FULL_IMAGE_TAG=concordium/${{ inputs.SERVICE_NAME }}:${TAG_VERSION}" >> $GITHUB_ENV
 
@@ -57,17 +66,11 @@ jobs:
             exit 1
           fi
 
-      - name: Clone repo
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-          submodules: recursive
-
       - name: Build Docker Image
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ${{ inputs.DOCKER_FILE }}
+          file: ${{ inputs.DOCKER_FILE_PATH }}
           tags: ${{ env.FULL_IMAGE_TAG }}
           no-cache: true
           push: true
