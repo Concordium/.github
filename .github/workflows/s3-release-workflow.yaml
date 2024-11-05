@@ -32,7 +32,7 @@ jobs:
           TAG: ghc-alpine/9.4.6 #${{ github.ref_name }}
         run: |
           tagversion=${TAG##${{inputs.SERVICE_NAME}}/}
-          if [[ ${{inputs.FILE_NAME}} =~ $tagversion ]]; then
+          if [[ ! ${{inputs.FILE_NAME}} =~ $tagversion ]]; then
             echo "Provided version: ${{inputs.FILE_NAME}} does not correspond to tag version $tagversion"
             exit 1
           fi
@@ -49,7 +49,7 @@ jobs:
         with:
           aws-region: "eu-west-1"
           role-to-assume: ${{ inputs.IAM_ROLE }}
-          role-session-name: Release-${{inputs.SERVICE_NAME}}
+          role-session-name: Release${{inputs.SERVICE_NAME}}Session
 
       - name: Check if file exist in s3
         run: |
