@@ -1,0 +1,76 @@
+name: S3 artifact release reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      SERVICE_NAME:
+        required: true
+        type: string
+      BUILD_ARGS:
+        required: true
+        type: string
+      DOCKER_FILE:
+        required: true
+        type: string
+      FILE_NAME:
+        required: true
+        type: string
+      BUCKET:
+        required: true
+        type: string
+      IAM_ROLE:
+        required: true
+        type: string
+
+jobs:
+  release-S3-artifact:
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - name: Validate the provided version
+        env:
+          TAG: ghc-alpine/9.2.5 #${{ github.ref_name }}
+        run: |
+          tagversion=${TAG##${{inputs.SERVICE_NAME}}/}
+          if [[ ${{inputs.FILE_NAME}} == *"$tagversion"* ]]; then
+            echo "Provided version: ${{inputs.FILE_NAME}} does not correspond to tag version $tagversion"
+            exit 1
+          fi
+          echo "OUT_FILE=${{inputs.BUCKET}}/${{inputs.SERVICE_NAME}}-${{inputs.FILE_NAME}}" >> $GITHUB_ENV
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          submodules: recursive
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: "eu-west-1"
+          role-to-assume: ${{ inputs.IAM_ROLE }}
+          role-session-name: Release-${{inputs.SERVICE_NAME}}
+
+      - name: Check if file exist in s3
+        run: |
+          set +e
+          output=$(aws s3 ls "${{env.OUT_FILE}}")
+          ec=$?
+          if [ $ec -eq "0" ]; then
+              echo "Objects found ${{env.OUT_FILE}}"
+              exit 1
+          elif [ $ec -ne "1"]; then
+              echo "$output"
+          fi
+
+      - name: Build
+        run: |
+          set -euxo pipefail
+          docker build -t service-builder ${{inputs.BUILD_ARGS}} -f ${{inputs.DOCKER_FILE}} .
+          id=$(docker create service-builder)
+          docker cp $id:/build/pkg-root/${{inputs.FILE_NAME}} .
+
+      - name: Publish
+        run: |
+          echo ${{env.OUT_FILE}}
+#          aws s3 cp ${{inputs.FILE_NAME}} ${{ env.OUT_FILE }}
