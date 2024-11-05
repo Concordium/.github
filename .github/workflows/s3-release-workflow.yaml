@@ -29,10 +29,10 @@ jobs:
     steps:
       - name: Validate the provided version
         env:
-          TAG: ghc-alpine/9.2.5 #${{ github.ref_name }}
+          TAG: ghc-alpine/9.4.6 #${{ github.ref_name }}
         run: |
           tagversion=${TAG##${{inputs.SERVICE_NAME}}/}
-          if [[ ${{inputs.FILE_NAME}} == *"$tagversion"* ]]; then
+          if [[ ${{inputs.FILE_NAME}} =~ $tagversion ]]; then
             echo "Provided version: ${{inputs.FILE_NAME}} does not correspond to tag version $tagversion"
             exit 1
           fi
