@@ -15,6 +15,10 @@ on:
         description: 'Path to the Dockerfile for building the service image.'
         required: true
         type: string
+      DOCKER_CONTEXT:
+        description: 'Path to the dockerfile context'
+        default: '.'
+        type: string
       CARGO_FILE_PATH:
         description: 'Version to validate against the tag version. If specified, ensures the tag matches this version.'
         type: string
@@ -66,7 +70,7 @@ jobs:
       - name: Build Docker Image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ${{ inputs.DOCKER_CONTEXT }}
           file: ${{ inputs.DOCKER_FILE_PATH }}
           tags: ${{ env.FULL_IMAGE_TAG }}
           no-cache: true
