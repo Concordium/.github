@@ -71,7 +71,7 @@ jobs:
             exit 1
           fi
 
-      - name: Build Docker Image
+      - name: Build and push docker mage
         if: ${{ secrets.DOCKERHUB_TOKEN }}
         uses: docker/build-push-action@v6
         with:
