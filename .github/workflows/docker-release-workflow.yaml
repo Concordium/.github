@@ -19,10 +19,7 @@ on:
         description: 'Version to validate against the tag version. If specified, ensures the tag matches this version.'
         type: string
       AWS_ROLE:
-        description: 'AWS role to assume'
-        type: string
-      AWS_ACCOUNT:
-        description: 'The AWS account to use for accessing ECR'
+        description: 'AWS role to assume when pushing docker image to ECR'
         type: string
     secrets:
       DOCKERHUB_USERNAME:
@@ -36,7 +33,7 @@ jobs:
     environment: release
     steps:
       - name: Login to Docker Hub
-        if: ${{ secrets.DOCKERHUB_TOKEN }}
+        if: ${{ ! secrets.AWS_ROLE }}
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -73,7 +70,7 @@ jobs:
           fi
 
       - name: Build Docker Image
-        if: ${{ secrets.DOCKERHUB_TOKEN }}
+        if: ${{ ! secrets.AWS_ROLE }}
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -85,12 +82,12 @@ jobs:
             ${{ inputs.BUILD_ARGS }}
 
       - name: Build and push Docker to ecr
-        if: ${{ ! secrets.DOCKERHUB_TOKEN }}
+        if: ${{ secrets.AWS_ROLE }}
         uses: explosion/action-ecr-publish@v1
         with:
           dockerfile: ${{ inputs.DOCKER_FILE }}
-          platforms: 'linux/amd64'
-          aws_region: 'eu-west-1'
+          platforms: "linux/amd64"
+          aws_region: "eu-west-1"
           aws_role_to_assume: ${{ inputs.AWS_ROLE }}
-          aws_account_id: ${{ inputs.AWS_ACCOUNT }}
-          ecr_repo_name: ${{ inputs.AWS_ACCOUNT }}.dkr.ecr.eu-west-1.amazonaws.com/concordium/${{ inputs.SERVICE_NAME }}
+          aws_account_id: "192549843005"
+          ecr_repo_name: "192549843005.dkr.ecr.eu-west-1.amazonaws.com/concordium/${{ inputs.SERVICE_NAME }}"
