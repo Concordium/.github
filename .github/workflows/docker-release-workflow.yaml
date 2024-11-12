@@ -84,7 +84,7 @@ jobs:
 
       - name: Build and push Docker to ecr
         if: ${{ inputs.AWS_ROLE }}
-        uses: explosion/action-ecr-publish@v1
+        uses: tedivm/action-ecr-publish@v2
         with:
           dockerfile: ${{ inputs.DOCKER_FILE }}
           platforms: "linux/amd64"
